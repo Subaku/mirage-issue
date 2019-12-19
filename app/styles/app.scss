@@ -1,0 +1,19 @@
+@import 'main';
+
+/*****  Vendor *****/
+
+//@import 'components/power-select/theme.scss';
+@import 'ember-power-select/themes/bootstrap';
+@import 'ember-power-select';
+@import "ember-bootstrap/bootstrap";
+//@import 'components/power-select/compat.scss';
+
+/***** Components *****/
+
+@import 'components/asset-location-summaries/main';
+@import 'components/asset-type-filter/main';
+
+
+.filter, .vision-filter-select {
+  margin-bottom: 10px;
+}

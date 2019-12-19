@@ -1,0 +1,77 @@
+@import '../../main';
+
+
+.asset-locations-modal {
+  .summary-details .list-inline {
+    margin: 0;
+
+    .summary-label {
+      font-weight: normal;
+      color: $color-bs-text-muted;
+    }
+
+    .total-tools, .total-equipment {
+      vertical-align: unset;
+    }
+
+    .badge {
+      background-color: $color-default-badge;
+      font-size: 10px;
+      padding: 3px 5px;
+    }
+  }
+
+  .asset-location-details {
+    margin-bottom: 5px;
+
+    .location-detail {
+      margin-right: 10px;
+
+      .detail-label {
+        color: $color-bs-text-muted;
+      }
+    }
+
+    .type-detail .badge {
+      font-size: 10px;
+      padding: 4px 6px;
+      vertical-align: unset;
+      background-color: $color-default-badge;
+    }
+  }
+}
+
+.asset-locations {
+  margin: 0;
+  max-height: 300px;
+  overflow-y: scroll;
+
+  .asset-location:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .asset-location:last-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+
+@media(min-height: 900px) {
+  .asset-locations-modal .modal-dialog {
+    width: auto;
+    max-width: 900px;
+  }
+
+  .asset-locations {
+    max-height: 600px;
+  }
+}
+
+@media(min-height: 700px) {
+  .asset-locations {
+    max-height: 430px;
+
+  }
+}

@@ -1,0 +1,32 @@
+{{#if this.isSummariesLoading}}
+  <b>Loading...</b>
+{{else}}
+
+  <AssetLocationSummaries::SummariesTable
+    @summaries={{this.summariesAsRows}}
+    @onViewClicked={{this.viewAssetLocations}}/>
+{{/if}}
+
+
+<BsModal
+  @open={{this.showAssetLocations}}
+  @renderInPlace={{true}}
+  class="asset-locations-modal" as |Modal|>
+  <Modal.header>
+    <h4 class="modal-title"><i class={{this.selectedLocation.icon}}></i> {{this.selectedLocation.name}}</h4>
+  </Modal.header>
+  <Modal.body>
+    <section class="summary-details">
+      <ul class="list-inline">
+        <li><label class="summary-label">Total Value:</label> <span class="total-value">{{format-currency this.totalAssetValue}}</span></li>
+        <li><label class="summary-label">Total Equipment:</label> <span class="total-equipment badge">{{this.totalEquipment}}</span></li>
+        <li><label class="summary-label">Total Tools:</label> <span class="total-tools badge">{{this.totalTools}}</span></li>
+      </ul>
+    </section>
+  </Modal.body>
+  <AssetLocationSummaries::Locations
+    @locations={{this.assetLocations}}/>
+  <Modal.footer>
+    <BsButton @onClick={{this.stopViewingAssetLocations}} @type="success">Done</BsButton>
+  </Modal.footer>
+</BsModal>

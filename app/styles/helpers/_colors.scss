@@ -1,0 +1,44 @@
+@import 'variables';
+
+
+/******************************/
+/*        Main Content        */
+/******************************/
+
+/* Bootstrap Stuff */
+
+$color-bs-text-muted: #919191;
+
+$color-text: #333;
+
+$color-placeholder-text: #808080;
+$color-divider-bg-color: #f5f5f5;
+
+$color-default-badge: #505050;
+
+$color-list-hover-bg: #f5f5f5;
+$color-list-selected-hover-bg: #c4e3f3;
+$color-list-selected-bg: #d9edf7;
+
+$color-icon-action: $color-bs-text-muted;
+
+$color-bt-panel-border: #ddd;
+
+
+/* Loaders & UI Previews */
+
+$color-app-load-spinner-bg: #f3b100;
+
+$color-badge-bg: #808080;
+$color-text-preview-bg: #e0e0e0;
+$color-button-preview-bg: #eaeaea;
+$color-il-text-preview-bg: #eaeaea;
+
+
+/******************************/
+/*         Components         */
+/******************************/
+
+// For dropdown selects like the power-select component
+$color-selected-option-bg: $color-list-selected-bg;
+$color-selected-option-hover-bg: $color-list-selected-hover-bg;

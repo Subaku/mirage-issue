@@ -1,0 +1,30 @@
+<ul class="list-group asset-locations">
+  {{#each @locations as |location|}}
+    {{#let location.asset location.assignedTo location.seenBy as |asset assignedPlace seenBy|}}
+      <li class="list-group-item asset-location">
+        <header>
+          <h4 class="list-group-item-heading">
+            <a class="asset-name" href={{asset.url}}>
+              {{asset.name}} <i class="fa fa-external-link"></i>
+            </a>
+            <small class="asset-id">({{asset.assetId}})</small>
+          </h4>
+        </header>
+        <div class="list-group-item-text asset-location-details">
+          <small class="location-detail type-detail">
+            <span class="detail-label">Asset Type:</span> {{asset.assetType}} <span class="badge">{{asset.category}}</span>
+          </small>
+          <small class="location-detail value-detail">
+            <span class="detail-label">Value:</span> {{format-currency asset.value}}
+          </small>
+          <small class="location-detail assignment-detail">
+            <span class="detail-label">Assigned To:</span> {{assignedPlace.name}}
+          </small>
+        </div>
+        <div class="list-group-item-text last-seen-details">
+          Last seen {{humanize-date location.whenSeen}} ago at {{semantic-date location.whenSeen}} by {{seenBy.name}}.
+        </div>
+      </li>
+    {{/let}}
+  {{/each}}
+</ul>

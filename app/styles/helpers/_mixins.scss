@@ -1,0 +1,126 @@
+@import 'colors';
+@import 'variables';
+
+// Shamelessly stolen from https://css-tricks.com/snippets/sass/centering-mixin/
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if ($horizontal and $vertical) {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  } @else if ($horizontal) {
+    transform: translateX(-50%);
+    left: 50%;
+  } @else if ($vertical) {
+    transform: translateY(-50%);
+    top: 50%;
+  }
+}
+
+/*
+  Mixin for providing a loading preview for text on a single line while the
+  text still present. The :before pseudo element is used as the overlay to
+  cover up the text while loading while the :after pseudo element acts as the
+  preview. Default is for smaller devices so adding to media queries for
+  desktops allows you to customize it at different break points.
+
+  Ex:
+
+  .my-element {
+    // As wide as can be with the default margins giving a bit of side padding.
+    @include text-with-preview();
+  }
+
+  @media(min-width: 768px) {
+    .my-element {
+      // Horizontally centered and only 300px wide.
+      @include text-with-preview($width: 300px, $center: true);
+    }
+  }
+
+*/
+@mixin text-with-preview($left: 0,
+                         $top: 0,
+                         // Increase or decrease based on text's font-size
+                         $height: 30px,
+                         // Margin on sides gives it "fake" padding since elements are absolute positioned
+                         $margin: 0 15px,
+                         // If none then we set previews "right" attribute to 0 otherwise
+                         // we set the width to the value given.
+                         $width: none,
+                         // Set to true for horizontal centering
+                         $center: false,
+                         // Controls whether or not the :before is used.
+                         $use-txt-overlay: true,
+                         // Color of :before overlay pseudo element
+                         $color-txt-overlay: #fff,
+                         // Color of :after preview pseudo element
+                         $color-preview-bg: $color-text-preview-bg,
+                         $border-radius: 4px) {
+  position: relative;
+  // Stop text from line breaking on smaller devices.
+  white-space: nowrap;
+
+  @if $use-txt-overlay {
+    // Used to completely cover the text content with background-color.
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: $top;
+      // We want to stretch this 100% so don't configure this.
+      left: 0;
+      height: $height;
+      width: 100%;
+      background-color: $color-txt-overlay;
+      z-index: $z-index-preview;
+    }
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: $top;
+    left: $left;
+    height: $height;
+    border-radius: $border-radius;
+    margin: $margin;
+    background-color: $color-preview-bg;
+    z-index: $z-index-preview + 1;
+
+    @if $width == none {
+      right: 0;
+    } @else {
+      width: $width;
+    }
+
+    @if $center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@mixin badge-with-preview($bg-color: $color-badge-bg) {
+  color: $bg-color;
+}
+
+@mixin button-with-preview($bg-color: $color-il-text-preview-bg,
+                           $border-radius: 2px) {
+  position: relative;
+  pointer-events: none;
+  cursor: default;
+
+  &:after {
+    content: '';
+    position: absolute;
+    background-color: $bg-color;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: $border-radius;
+  }
+}

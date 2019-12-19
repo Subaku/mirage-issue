@@ -1,0 +1,28 @@
+<EmberTable as |t|>
+  <t.head @columns={{this.summaryColumns}}/>
+  <t.body @rows={{@summaries}} as |b|>
+    <b.row as |tr|>
+      <tr.cell class={{tr.columnValue.slug}} as |cell column row|>
+        {{#if (eq column.slug "location")}}
+          <a href={{row.location.url}}><i class={{row.location.icon}}></i> {{row.location.name}}</a>
+        {{else if (eq column.slug "inventory")}}
+          <p class="summary-location-data">
+            <label class="summary-data-label"># Assets:</label> <span class="summary-data">{{row.assets}}</span>
+          </p>
+          <p class="summary-location-data">
+            <label class="summary-data-label">Value:</label> <span class="summary-data">{{format-currency row.assetValue}}</span>
+          </p>
+        {{else if (eq column.slug "non-assigned")}}
+          <p class="summary-location-data">
+            <label class="summary-data-label"># Assets:</label> <span class="summary-data">{{row.nonAssignedAssets}}</span>
+          </p>
+          <p class="summary-location-data">
+            <label class="summary-data-label">Value:</label> <span class="summary-data">{{format-currency row.nonAssignedAssetValue}}</span>
+          </p>
+        {{else if (eq column.slug "actions")}}
+          <button type="button" {{on "click" (fn @onViewClicked row.location)}}>View</button>
+        {{/if}}
+      </tr.cell>
+    </b.row>
+  </t.body>
+</EmberTable>
